@@ -1,6 +1,6 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import CustomDrawerContent from './CustomDrawerContent';
-import { BudgetScreen, TransactionScreen } from '@/screens';
+import { BudgetScreen, FinancialReportScreen, TransactionScreen } from '@/screens';
 import { colors } from "@/constants";
 import BottomTabNavigator from "./BottomTabNavigator";
 
@@ -38,6 +38,13 @@ export default function DrawerNavigator() {
             <Drawer.Screen
                 name="BudgetScreen"
                 component={BudgetScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Drawer.Screen
+                name="FinancialReportScreen"
+                component={FinancialReportScreen}
                 options={{
                     headerShown: false,
                 }}

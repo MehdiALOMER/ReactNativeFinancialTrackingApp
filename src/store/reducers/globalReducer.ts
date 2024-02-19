@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { setLoading } from "./loadingReducer";
-import { GlobalService } from '@/services/globalService';
+import { GlobalService } from '@/services/authService';
 
 
 const getAllCountriesThunk = createAsyncThunk("country/getAll", async (payload: void, { dispatch }) => {

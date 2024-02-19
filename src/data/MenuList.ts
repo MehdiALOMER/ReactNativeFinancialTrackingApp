@@ -79,4 +79,20 @@ export const menuList = [
             },
         ]
     },
+    {
+        id: 3,
+        name: "Raporlama",
+        icon: "account",
+        isOpen: false,
+        submenuList: [
+            {
+                id: 1,
+                name: "Harcama Raporu",
+                icon: "account",
+                image: "report",
+                screen: "FinancialReportScreen",
+                isSelect: false
+            },
+        ]
+    },
 ];

@@ -6,10 +6,16 @@ import { menuList } from '@/data/MenuList';
 import { colors, dWidth } from '@/constants';
 import { GenericImage, GenericText, GenericTouchableOpacity, GenericView } from '@/assets/css';
 import logoImage from '@/assets/images/Logo-Test.png';
+import { AuthService } from '@/services/authService';
 
 export default function CustomDrawerContent(props: any) {
 
     const [generalMenuList, setGeneralMenuList] = useState(menuList);
+
+    const logout = () => {
+        AuthService.logout();
+        props.navigation.navigate("LoginScreen");
+    }
 
     return (
         <GenericView flex={1}>
@@ -118,8 +124,7 @@ export default function CustomDrawerContent(props: any) {
                 </GenericView>
                 <GenericView flex={.5}>
                     <GenericTouchableOpacity
-                        onPress={() => {
-                        }}
+                        onPress={() => { logout() }}
                         marginLeft={dWidth * .05} flexDirection="row" >
                         <Entypo name={"log-out"} size={25} color={colors.primary} />
                         <GenericView marginLeft={dWidth * .05} justifyContent="center">

@@ -1,4 +1,4 @@
 export class ApiConstant {
-  static baseUrl = 'https://restcountries.com/v3.1/';
-  static getAllCountries = 'all';
+  static baseUrl = 'https://dummyjson.com/auth/';
+  static loginUrl = 'login';
 }
