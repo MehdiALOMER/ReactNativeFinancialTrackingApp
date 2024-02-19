@@ -1,34 +1,60 @@
+import { GenericImage, GenericText, GenericTouchableOpacity, GenericView } from '@/assets/css';
 import AppHeader from '@/components/shared/AppHeader';
 import SafeAreaWrapper from '@/components/shared/SafeAreaWrapper';
+import { dWidth } from '@/constants';
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { BarChart, PieChart } from 'react-native-chart-kit';
+import { StyleSheet, ScrollView } from 'react-native';
+import translateImage from '@/assets/images/translate.png';
+import technicalSupportImage from '@/assets/images/technical-support.png';
+import guideBookImage from '@/assets/images/guide-book.png';
+import optionsImage from '@/assets/images/options.png';
 
-interface FinansalDurum {
-  toplamVarlik: number;
-  borclar: number;
-  butce: number;
+interface FinancialStatus {
+  totalAssets: number;
+  debts: number;
+  budget: number;
 }
 
 const HomeScreen: React.FC = ({ navigation }: any) => {
-  const finansalDurum: FinansalDurum = {
-    toplamVarlik: 50000,
-    borclar: 15000,
-    butce: 35000,
-  };
-  const barData = {
-    labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs'],
-    datasets: [
-      {
-        data: [5000, 8000, 7500, 10000, 9000],
-      },
-    ],
+  const financialStatus: FinancialStatus = {
+    totalAssets: 50000,
+    debts: 15000,
+    budget: 35000,
   };
 
-  const pieData = [
-    { name: 'Varlıklar', population: 50000, color: '#4CAF50', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-    { name: 'Borçlar', population: 15000, color: '#F44336', legendFontColor: '#7F7F7F', legendFontSize: 15 },
-    { name: 'Bütçe', population: 35000, color: '#2196F3', legendFontColor: '#7F7F7F', legendFontSize: 15 }
+  const cardList = [
+    {
+      id: 1,
+      title: 'Dil Seçimi',
+      image: translateImage,
+      textColor: "#1c74e8",
+      backgroundColor: "rgba(28, 116, 232, 0.2)",
+      onPress: () => { }
+    },
+    {
+      id: 2,
+      title: 'Destek Ekranı',
+      image: technicalSupportImage,
+      textColor: "#27f19d",
+      backgroundColor: "rgba(39, 241, 157, 0.2)",
+      onPress: () => { }
+    },
+    {
+      id: 3,
+      title: 'Kullanıcı Klavuzu',
+      image: guideBookImage,
+      textColor: "#be53ff",
+      backgroundColor: "rgba(190, 83, 255, 0.2)",
+      onPress: () => { }
+    },
+    {
+      id: 4,
+      title: 'Seçenekler',
+      image: optionsImage,
+      textColor: "#e7aa40",
+      backgroundColor: "rgba(231, 170, 64, 0.2)",
+      onPress: () => { }
+    },
   ];
   const goDashboard = () => {
     navigation.navigate('NotificationScreen');
@@ -38,85 +64,75 @@ const HomeScreen: React.FC = ({ navigation }: any) => {
   }
   return (
     <SafeAreaWrapper>
-      <AppHeader title="Chart" menu right="space-dashboard" onPressMenu={openDrawer} onRightPress={goDashboard} />
-      <ScrollView style={styles.container}>
-        <Text style={styles.grafikBaslik}>Aylık Gelir ve Giderler</Text>
-        <BarChart
-          data={barData}
-          width={350}
-          height={220}
-          yAxisLabel="₺"
-          yAxisSuffix=""
-          chartConfig={{
-            backgroundColor: '#ffffff',
-            backgroundGradientFrom: '#ffffff',
-            backgroundGradientTo: '#ffffff',
-            decimalPlaces: 0,
-            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-          }}
-          style={styles.grafik}
-        />
-        <Text style={styles.grafikBaslik}>Varlık, Borç ve Bütçe Dağılımı</Text>
-        <PieChart
-          data={pieData}
-          width={350}
-          height={220}
-          chartConfig={{
-            backgroundColor: '#ffffff',
-            backgroundGradientFrom: '#ffffff',
-            backgroundGradientTo: '#ffffff',
-            decimalPlaces: 0,
-            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-          }}
-          accessor="population"
-          backgroundColor="transparent"
-          paddingLeft="15"
-          style={styles.grafik}
-        />
-        <View style={styles.kart}>
-          <Text style={styles.kartBaslik}>Toplam Varlık</Text>
-          <Text style={styles.kartDeger}>${finansalDurum.toplamVarlik}</Text>
-        </View>
-        <View style={styles.kart}>
-          <Text style={styles.kartBaslik}>Borçlar</Text>
-          <Text style={styles.kartDeger}>${finansalDurum.borclar}</Text>
-        </View>
-        <View style={styles.kart}>
-          <Text style={styles.kartBaslik}>Bütçe</Text>
-          <Text style={styles.kartDeger}>${finansalDurum.butce}</Text>
-        </View>
-        <TouchableOpacity style={styles.buton}>
-          <Text style={styles.butonYazi}>Yeni Harcama Ekle</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buton}>
-          <Text style={styles.butonYazi}>Bütçe Raporu</Text>
-        </TouchableOpacity>
-        <Text style={styles.bildirimBaslik}>Bildirimler</Text>
-        <View style={styles.bildirimKart}>
-          <Text style={styles.bildirimMetin}>Elektrik faturası ödeme tarihi yaklaşıyor!</Text>
-        </View>
-      </ScrollView>
+      <AppHeader title="Anasayfa" menu right="space-dashboard" onPressMenu={openDrawer} onRightPress={goDashboard} />
+      <GenericView flex={1} paddingLeft={dWidth * .025} paddingRight={dWidth * .025}>
+        <ScrollView>
+          <GenericView marginTop={dWidth * .025}>
+            <GenericView>
+              <GenericText fontSize={15} bold>Hızlı Erişim</GenericText>
+            </GenericView>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ marginTop: dWidth * .025 }}>
+              {cardList.map((item, index) => (
+                <GenericTouchableOpacity
+                  key={index}
+                  onPress={() => {
+                  }}
+                  flex={1}
+                  backgroundColor={item.backgroundColor}
+                  marginRight={dWidth * .05}
+                  height={dWidth * .25}
+                  width={dWidth * .4}
+                  borderRadius={20}
+                >
+                  <GenericView flex={1} flexDirection="column">
+                    <GenericView flex={4} center>
+                      <GenericImage
+                        source={item.image}
+                        height={dWidth * .15}
+                        width={dWidth * .15}
+                        resizeMode="contain"
+                      />
+                    </GenericView>
+                    <GenericView flex={2} center>
+                      <GenericText fontSize={15} bold textAlign="center" color={item.textColor}>{item.title}</GenericText>
+                    </GenericView>
+                  </GenericView>
+                </GenericTouchableOpacity>
+              ))}
+            </ScrollView>
+          </GenericView>
+          <GenericView marginTop={dWidth * .05}>
+            <GenericView style={styles.card}>
+              <GenericText style={styles.cardTitle}>Toplam Varlık</GenericText>
+              <GenericText style={styles.cardValue}>${financialStatus.totalAssets}</GenericText>
+            </GenericView>
+            <GenericView style={styles.card}>
+              <GenericText style={styles.cardTitle}>Borçlar</GenericText>
+              <GenericText style={styles.cardValue}>${financialStatus.debts}</GenericText>
+            </GenericView>
+            <GenericView style={styles.card}>
+              <GenericText style={styles.cardTitle}>Bütçe</GenericText>
+              <GenericText style={styles.cardValue}>${financialStatus.budget}</GenericText>
+            </GenericView>
+          </GenericView>
+          <GenericView marginTop={dWidth * .05}>
+            <GenericText style={styles.notificationTitle}>Hatırlatıcılar</GenericText>
+            <GenericView style={styles.notificationCard}>
+              <GenericText style={styles.notificationDescription}>Elektrik faturası ödeme tarihi yaklaşıyor!</GenericText>
+            </GenericView>
+          </GenericView>
+        </ScrollView>
+      </GenericView>
     </SafeAreaWrapper>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-  },
-  baslik: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    margin: 20,
-  },
-  kart: {
+  card: {
     backgroundColor: '#ffffff',
     borderRadius: 10,
     padding: 20,
-    marginHorizontal: 20,
+    /* marginHorizontal: 20, */
     marginBottom: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -124,53 +140,26 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
   },
-  kartBaslik: {
+  cardTitle: {
     fontSize: 18,
     fontWeight: 'bold',
   },
-  kartDeger: {
+  cardValue: {
     fontSize: 16,
     marginTop: 5,
   },
-  buton: {
-    backgroundColor: '#4CAF50',
-    padding: 15,
-    borderRadius: 10,
-    marginHorizontal: 20,
-    marginBottom: 10,
-    alignItems: 'center',
-  },
-  butonYazi: {
-    color: '#ffffff',
-    fontSize: 16,
+  notificationTitle: {
+    fontSize: 15,
     fontWeight: 'bold',
   },
-  bildirimBaslik: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginLeft: 20,
-    marginTop: 10,
-  },
-  bildirimKart: {
+  notificationCard: {
     backgroundColor: '#ffcccb',
     borderRadius: 10,
     padding: 15,
-    marginHorizontal: 20,
-    marginBottom: 10,
+    marginVertical: 10,
   },
-  bildirimMetin: {
+  notificationDescription: {
     fontSize: 16,
-  },
-  grafikBaslik: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginLeft: 20,
-    marginTop: 10,
-  },
-  grafik: {
-    marginVertical: 8,
-    borderRadius: 16,
-    alignSelf: 'center',
   },
 });
 

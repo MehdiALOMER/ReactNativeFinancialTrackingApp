@@ -15,11 +15,11 @@ export default function BottomTabNavigator() {
 
 
     const barColors = {
-        chart: colors.primary,
+        home: colors.primary,
         table: colors.black
     };
 
-    const [tab, setTab] = React.useState<keyof typeof barColors>('chart');
+    const [tab, setTab] = React.useState<keyof typeof barColors>('home');
     const navRef = useNavigationContainerRef();
     React.useEffect(() => {
         const unsubscribe = navRef.addListener('state', () => {
@@ -47,10 +47,10 @@ export default function BottomTabNavigator() {
                 name="HomeScreen"
                 component={HomeScreen}
                 options={{
-                    tabBarColor: barColors.chart,
-                    tabBarLabel: 'Chart',
+                    tabBarColor: barColors.home,
+                    tabBarLabel: 'Home',
                     tabBarIcon: ({ focused }) => (
-                        <Icon name="chart-bar" size={30} color={focused == true ? colors.secondary : colors.gray} />
+                        <Icon name="home" size={30} color={focused == true ? colors.secondary : colors.gray} />
                     )
                 }}
             />
