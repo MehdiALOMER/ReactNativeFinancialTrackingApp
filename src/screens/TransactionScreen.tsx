@@ -70,7 +70,7 @@ const TransactionScreen: React.FC = ({ navigation }: any) => {
             ))}
         </ScrollView>
     );
-    const goDashboard = () => {
+    const goNotification = () => {
         navigation.navigate('NotificationScreen');
     }
     const openDrawer = () => {
@@ -116,7 +116,7 @@ const TransactionScreen: React.FC = ({ navigation }: any) => {
     };
     return (
         <SafeAreaWrapper>
-            <AppHeader title="Hareketler" menu right="space-dashboard" onPressMenu={openDrawer} onRightPress={goDashboard} />
+            <AppHeader title="Hareketler" menu right="notifications" onPressMenu={openDrawer} onRightPress={goNotification} />
             <GenericView flex={1}>
                 <View style={styles.tabContainer}>
                     {data.map((item, index) => (

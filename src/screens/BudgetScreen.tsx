@@ -62,7 +62,7 @@ const BudgetScreen: React.FC = ({ navigation }: any) => {
         setExpenseModalVisible(false); // Modalı kapat
         setNewExpense({ budgetId: '', description: '', amount: '' }); // Inputları temizle
     }
-    const goDashboard = () => {
+    const goNotification = () => {
         navigation.navigate('NotificationScreen');
     }
     const openDrawer = () => {
@@ -70,7 +70,7 @@ const BudgetScreen: React.FC = ({ navigation }: any) => {
     }
     return (
         <SafeAreaWrapper>
-            <AppHeader title="Bütçe Yönetimi" menu right="space-dashboard" onPressMenu={openDrawer} onRightPress={goDashboard} />
+            <AppHeader title="Bütçe Yönetimi" menu right="notifications" onPressMenu={openDrawer} onRightPress={goNotification} />
             <GenericView flex={1} padding={dWidth * .025}>
                 <GenericView flex={1}>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} >

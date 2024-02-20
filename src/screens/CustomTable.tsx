@@ -363,12 +363,12 @@ export default function CustomTable({ navigation }: any) {
     const openDrawer = () => {
         navigation.openDrawer();
     }
-    const goDashboard = () => {
-        navigation.navigate('DashboardScreen');
+    const goNotification = () => {
+        navigation.navigate('NotificationScreen');
     }
     return (
         <SafeAreaWrapper>
-            <AppHeader title="Custom Table" menu right="space-dashboard" onPressMenu={openDrawer} onRightPress={goDashboard} />
+            <AppHeader title="Custom Table" menu right="notifications" onPressMenu={openDrawer} onRightPress={goNotification} />
             <View>
                 <View>
                     {/* {filterComponent()} */}

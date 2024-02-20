@@ -56,7 +56,7 @@ const HomeScreen: React.FC = ({ navigation }: any) => {
       onPress: () => { }
     },
   ];
-  const goDashboard = () => {
+  const goNotification = () => {
     navigation.navigate('NotificationScreen');
   }
   const openDrawer = () => {
@@ -64,7 +64,7 @@ const HomeScreen: React.FC = ({ navigation }: any) => {
   }
   return (
     <SafeAreaWrapper>
-      <AppHeader title="Anasayfa" menu right="space-dashboard" onPressMenu={openDrawer} onRightPress={goDashboard} />
+      <AppHeader title="Anasayfa" menu right="notifications" onPressMenu={openDrawer} onRightPress={goNotification} />
       <GenericView flex={1} paddingLeft={dWidth * .025} paddingRight={dWidth * .025}>
         <ScrollView>
           <GenericView marginTop={dWidth * .025}>
